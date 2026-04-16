@@ -40,33 +40,39 @@
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(20px);
-      color: #1e293b;
+      background: #ffffff;
+      color: #0f172a;
       padding: 14px 32px;
-      border-bottom: 1px solid rgba(226,232,240,0.8);
-      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.08);
     }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
 
     .header-logo {
-      height: 44px;
+      height: 40px;
       width: auto;
       display: block;
       object-fit: contain;
       flex-shrink: 0;
     }
 
+    .header-divider {
+      width: 1px;
+      height: 32px;
+      background: #e2e8f0;
+      flex-shrink: 0;
+    }
+
     header h1 {
       margin: 0;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #1e293b;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
       letter-spacing: -0.02em;
     }
 
@@ -260,8 +266,9 @@
 
     @media (max-width: 768px) {
       body { padding-top: 100px; }
-      header { flex-wrap: wrap; padding: 14px 20px; }
-      .header-logo { height: 34px; }
+      header { flex-wrap: wrap; padding: 12px 20px; }
+      .header-logo { height: 32px; }
+      header h1 { font-size: 1rem; }
       header h1 { font-size: 1.1rem; }
       main { margin: 16px auto 40px; padding: 24px 16px 40px; border-radius: 14px; }
       .card { padding: 24px 18px 32px; }
@@ -274,7 +281,8 @@
   <header>
     <div class="header-left">
       <img src="Logo_Ascencia_Business_School p 5.png" alt="Ascencia Business School" class="header-logo">
-      <h1 id="examTitleHeader">Concours Parcoursup — Ascencia Business School</h1>
+      <div class="header-divider"></div>
+      <h1 id="examTitleHeader">Concours Écrit Parcoursup</h1>
     </div>
     <div id="timer"></div>
   </header>
@@ -284,8 +292,7 @@
 
     <!-- LOGIN -->
     <section id="login" class="card">
-      <h2 style="margin-bottom: 6px;">Concours d'entrée</h2>
-      <p style="text-align:center; color:#64748b; margin-bottom: 28px; font-size: 0.95rem;">
+      <p style="text-align:center; color:#64748b; margin: 0 0 28px 0; font-size:0.95rem; padding-top: 8px;">
         Renseignez vos informations pour commencer. Vous disposerez de
         <strong style="color:#2563eb;">20 minutes</strong> pour répondre aux 65 questions.
       </p>
