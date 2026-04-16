@@ -695,7 +695,7 @@
         exitPromptOpen = false;
         if (overlay) overlay.style.display = "none";
         setOverlayActive(false);
-        terminateExam("Vous n'êtes pas revenu à temps. Le concours est arrêté.");
+        submitExam("Temps de retour écoulé — soumission automatique.");
       }
     }, 1000);
     logEvent("Avertissement affiché", `${source} — violation #${violationCount}`);
