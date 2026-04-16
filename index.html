@@ -48,9 +48,16 @@
       box-shadow: 0 4px 20px rgba(15,23,42,0.06);
     }
 
-    .header-left { display: flex; align-items: center; gap: 16px; }
+    .-left { display: flex; align-items: center; gap: 16px; }
 
-    header h1 {
+    .header-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+     h1 {
       margin: 0;
       font-size: 1.1rem;
       font-weight: 700;
@@ -155,7 +162,7 @@
       margin-bottom: 32px;
     }
 
-    .section-header {
+    .section- {
       background: #0f172a;
       padding: 14px 24px;
       display: flex;
@@ -191,7 +198,7 @@
     }
     .mcq-question.answered { border-color: #86efac; background: #f0fdf4; }
 
-    .mcq-question-header {
+    .mcq-question- {
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       padding: 8px 18px;
       font-size: 0.75rem;
@@ -234,7 +241,7 @@
     .progress-badge.complete { background: #dcfce7; color: #166534; }
 
     /* Anti-cheat overlay */
-    body.overlay-active main, body.overlay-active header { filter: blur(8px); pointer-events: none; }
+    body.overlay-active main, body.overlay-active  { filter: blur(8px); pointer-events: none; }
     body.overlay-active { overflow: hidden; }
 
     #exitOverlay {
@@ -257,24 +264,30 @@
     #exitOverlayStay { border: 2px solid #cbd5e1; background: #f1f5f9; color: #2563eb; }
     #exitOverlayLeave { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
 
-    @media (max-width: 768px) {
-      body { padding-top: 100px; }
-      header { flex-wrap: wrap; padding: 14px 20px; }
-      main { margin: 16px auto 40px; padding: 24px 16px 40px; border-radius: 14px; }
-      .card { padding: 24px 18px 32px; }
-      .section-body { padding: 16px; }
-      .name-row { flex-direction: column; }
-    }
+   @media (max-width: 768px) {
+  body { padding-top: 100px; }
+  header { flex-wrap: wrap; padding: 14px 20px; }
+  main { margin: 16px auto 40px; padding: 24px 16px 40px; border-radius: 14px; }
+  .card { padding: 24px 18px 32px; }
+  .section-body { padding: 16px; }
+  .name-row { flex-direction: column; }
+
+  /* 👇 ADD THIS */
+  .header-logo {
+    height: 34px;
+  }
+}
   </style>
 </head>
 <body>
   <header>
-    <div class="header-left">
-      <h1 id="examTitleHeader">Concours Parcoursup — Ascencia Business School</h1>
-      <span class="ascencia-badge">Ascencia BS</span>
-    </div>
-    <div id="timer"></div>
-  </header>
+  <div class="header-left">
+    <img src="Logo_Ascencia_Business_School p 5.png" alt="Ascencia Business School" class="header-logo">
+    <h1 id="examTitleHeader">Concours Parcoursup — Ascencia Business School</h1>
+    <span class="ascencia-badge">Ascencia BS</span>
+  </div>
+  <div id="timer"></div>
+</header>
 
   <main>
     <span id="langSentinel" style="display:none;">This sentence is used to detect automatic translation of the exam page.</span>
@@ -441,7 +454,7 @@
         { text: "Que signifie « TVA » ?", options: ["Taxe sur Valeur Ajoutée","Taux Variable Annuel","Taxe Vente Achat","Total Vente Annuel"], correct: 0 },
         { text: "Que signifie « PIB » ?", options: ["Produit Industriel Brut","Produit Intérieur Brut","Profit International Bancaire","Production Interne de Base"], correct: 1 },
         { text: "Que signifie « BtoB » ?", options: ["Business to Bank","Business to Business","Back to Business","Brand to Buyer"], correct: 1 },
-        { text: "Une marge correspond :", options: ["Au chiffre d'affaires","Au bénéfice","À la différence prix/coût","Au salaire"], correct: 2 },
+        { text: "Une marge correspond :", options: ["Au chiffre d'affaires","Au bénéfice","À la différence prix/coût","Au salaire"], correct: 1 },
       ]
     },
     {
@@ -469,7 +482,7 @@
       id: "p5", title: "Partie 5 — Anglais", color: "#0f172a",
       passage: null,
       questions: [
-        { text: "If I ___ more time, I would apply for the job.", options: ["have","had","will have","having"], correct: 1 },
+        { text: "If I ___ more time, I would apply for the job.", options: ["have","had","will have","having"], correct: 2 },
         { text: "She ___ in this company since 2022.", options: ["works","worked","has worked","is working"], correct: 2 },
         { text: "We ___ a meeting when the client called.", options: ["have","had","were having","are having"], correct: 2 },
         { text: "This product is ___ than the previous one.", options: ["more efficient","efficienter","most efficient","efficiently"], correct: 0 },
