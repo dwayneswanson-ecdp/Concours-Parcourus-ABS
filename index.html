@@ -371,6 +371,40 @@
     </section>
   </main>
 
+  <!-- CONFIRMATION PAGE -->
+  <section id="confirmation" style="display:none;">
+    <div style="max-width:580px; margin:60px auto; text-align:center; padding: 0 20px;">
+      <div style="width:72px; height:72px; background:linear-gradient(135deg,#22c55e,#16a34a); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; box-shadow:0 8px 24px rgba(34,197,94,0.3);">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 style="font-size:2rem; font-weight:800; color:#0f172a; margin:0 0 12px 0; letter-spacing:-0.02em;">Concours soumis</h2>
+      <p style="font-size:1.05rem; color:#475569; margin:0 0 32px 0; line-height:1.7;">
+        Votre copie a bien été enregistrée et transmise.<br>
+        Merci d'avoir participé au concours d'entrée Ascencia Business School.
+      </p>
+      <div style="background:#f8f9fc; border:2px solid #e2e8f0; border-radius:16px; padding:24px 28px; margin-bottom:32px; text-align:left;">
+        <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#94a3b8; margin-bottom:16px;">Récapitulatif</div>
+        <div style="display:grid; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.93rem;">
+            <span style="color:#64748b; font-weight:600;">Candidat</span>
+            <span style="color:#0f172a; font-weight:700;" id="confirmSummaryName"></span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.93rem;">
+            <span style="color:#64748b; font-weight:600;">Session</span>
+            <span style="color:#0f172a; font-weight:700;" id="confirmSummarySession"></span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.93rem;">
+            <span style="color:#64748b; font-weight:600;">Statut</span>
+            <span style="background:#dcfce7; color:#166534; font-weight:700; font-size:0.82rem; padding:3px 12px; border-radius:999px;">✅ Transmis</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:0.88rem; color:#94a3b8; line-height:1.6;">
+        Les résultats seront communiqués par Ascencia Business School<br>selon le calendrier Parcoursup.
+      </p>
+    </div>
+  </section>
+
   <!-- Exit Overlay -->
   <div id="exitOverlay">
     <div>
@@ -761,10 +795,19 @@
         { from_name: studentName, from_email: studentEmail, subject, message_html: htmlReport },
         "Bb0oPYBiZGQcyIz5r"
       ).then(() => {
-        alert("✅ Concours soumis avec succès. Merci !");
         localStorage.removeItem(DEADLINE_KEY);
         examDeadline = null;
-        resetToLanding();
+        clearInterval(timer);
+        document.getElementById("exam").style.display         = "none";
+        document.getElementById("login").style.display        = "none";
+        document.getElementById("confirm").style.display      = "none";
+        document.getElementById("exitOverlay").style.display  = "none";
+        document.getElementById("confirmSummaryName").textContent    = studentName;
+        document.getElementById("confirmSummarySession").textContent = group;
+        document.getElementById("confirmation").style.display = "block";
+        const timerEl = document.getElementById("timer");
+        if (timerEl) { timerEl.textContent = ""; timerEl.style.display = "none"; }
+        scrollToTop();
       }).catch(err => {
         const msg = err?.text || err?.message || JSON.stringify(err);
         alert("❌ Erreur lors de l'envoi : " + msg);
@@ -787,10 +830,11 @@
     setOverlayActive(false);
     const timerEl = document.getElementById("timer");
     if (timerEl) { timerEl.textContent = ""; timerEl.style.display = "none"; }
-    document.getElementById("login").style.display    = "block";
-    document.getElementById("confirm").style.display  = "none";
-    document.getElementById("exam").style.display     = "none";
-    document.getElementById("exitOverlay").style.display = "none";
+    document.getElementById("login").style.display        = "block";
+    document.getElementById("confirm").style.display      = "none";
+    document.getElementById("exam").style.display         = "none";
+    document.getElementById("confirmation").style.display = "none";
+    document.getElementById("exitOverlay").style.display  = "none";
     ["studentFirstName","studentLastName","studentEmail","classCode"].forEach(id => {
       const el = document.getElementById(id); if (el) el.value = "";
     });
