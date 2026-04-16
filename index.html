@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Content-Language" content="fr">
+  <meta name="robots" content="no-translate">
+  <title>Concours Parcoursup — Ascencia Business School</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      translate: none !important;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+      margin: 0; padding: 0;
+      overscroll-behavior: none;
+    }
+    * { translate: none !important; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f8f9fc;
+      color: #1e293b;
+      font-size: 16px;
+      line-height: 1.7;
+      padding-top: 85px;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      color: #1e293b;
+      padding: 16px 32px;
+      border-bottom: 1px solid rgba(226,232,240,0.8);
+      box-shadow: 0 4px 20px rgba(15,23,42,0.06);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 16px; }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+    }
+
+    .ascencia-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e85d04;
+      background: #fff4ed;
+      border: 1.5px solid #fed7aa;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    #timer {
+      display: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 2px solid #2563eb;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+      transition: all 0.3s ease;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 32px auto 60px;
+      background: #fff;
+      padding: 48px 48px 56px;
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(15,23,42,0.08);
+      border: 1px solid rgba(226,232,240,0.8);
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 30px rgba(15,23,42,0.08);
+      padding: 40px 40px 48px;
+      max-width: 640px;
+      margin: 40px auto;
+      border: 1px solid rgba(226,232,240,0.8);
+    }
+
+    .card h2 { color: #0f172a; margin: 0 0 12px 0; font-size: 1.75rem; font-weight: 700; text-align: center; }
+    .card p { font-size: 1rem; color: #475569; line-height: 1.7; }
+
+    label { display: block; margin: 18px 0 8px; font-weight: 600; font-size: 0.9rem; color: #0f172a; }
+
+    input[type="text"], input[type="email"], select {
+      width: 100%; padding: 13px 15px;
+      border: 2px solid #e2e8f0; border-radius: 12px;
+      font-size: 0.93rem; font-family: 'Inter', inherit;
+      box-sizing: border-box; background: #fff; color: #1e293b;
+      transition: all 0.2s ease;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, select:focus {
+      outline: none; border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    button {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff; border: none; padding: 14px 32px;
+      border-radius: 999px; cursor: pointer;
+      font-size: 0.95rem; font-weight: 600; font-family: 'Inter', inherit;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.25);
+      transition: all 0.3s ease;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+    button:active { transform: translateY(0); }
+
+    .btn-light {
+      background: #f1f5f9; color: #2563eb;
+      border: 2px solid #e2e8f0; box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+    }
+    .btn-light:hover { background: #e2e8f0; }
+
+    .btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+    .btn-row.center { justify-content: center; }
+    .btn-row.right { justify-content: flex-end; }
+    .btn-row.between { justify-content: space-between; }
+
+    .name-row { display: flex; gap: 14px; }
+    .name-row .field { flex: 1 1 0; min-width: 180px; }
+    .upper { text-transform: uppercase; }
+
+    /* ===== EXAM SECTIONS ===== */
+    .section-block {
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      background: #0f172a;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title { font-size: 1rem; font-weight: 700; color: #fff; }
+    .section-count { font-size: 0.78rem; font-weight: 600; color: #94a3b8; }
+
+    .section-body { padding: 20px 24px; background: #f8f9fc; display: flex; flex-direction: column; gap: 16px; }
+
+    /* Reading passage */
+    .reading-passage {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #1e40af;
+      line-height: 1.7;
+      margin-bottom: 4px;
+      font-style: italic;
+    }
+
+    /* MCQ Question */
+    .mcq-question {
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .mcq-question.answered { border-color: #86efac; background: #f0fdf4; }
+
+    .mcq-question-header {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      padding: 8px 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .mcq-question-body { padding: 16px 18px 14px; }
+    .mcq-question-text { font-size: 0.9rem; font-weight: 600; color: #0f172a; margin-bottom: 12px; line-height: 1.55; }
+
+    .mcq-options { display: flex; flex-direction: column; gap: 8px; }
+    .mcq-option {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 14px;
+      border: 2px solid #e2e8f0; border-radius: 8px;
+      cursor: pointer; font-size: 0.87rem; color: #374151;
+      line-height: 1.45; transition: all 0.15s ease;
+    }
+    .mcq-option:hover { border-color: #93c5fd; background: #eff6ff; }
+    .mcq-option.selected { border-color: #2563eb; background: #eff6ff; }
+    .mcq-option input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: #2563eb; width: 15px; height: 15px; cursor: pointer; }
+
+    /* Progress */
+    .progress-bar-wrap {
+      background: #e2e8f0; border-radius: 999px; height: 6px; margin-bottom: 20px; overflow: hidden;
+    }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #1d4ed8); border-radius: 999px; transition: width 0.4s ease; }
+
+    .progress-summary {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+    }
+    .progress-text { font-size: 0.9rem; font-weight: 600; color: #475569; }
+    .progress-badge {
+      font-size: 0.85rem; font-weight: 700; padding: 6px 14px;
+      background: #f1f5f9; border-radius: 999px; color: #64748b;
+    }
+    .progress-badge.complete { background: #dcfce7; color: #166534; }
+
+    /* Anti-cheat overlay */
+    body.overlay-active main, body.overlay-active header { filter: blur(8px); pointer-events: none; }
+    body.overlay-active { overflow: hidden; }
+
+    #exitOverlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    #exitOverlay > div {
+      background: #fff; max-width: 460px; width: 92%;
+      border-radius: 24px; padding: 32px 32px 28px;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.4);
+    }
+    #exitOverlay h2 { margin: 0 0 10px 0; font-size: 1.4rem; color: #0f172a; }
+    #exitOverlayStrike { font-size: 1.3rem; font-weight: 800; color: #dc2626; text-transform: uppercase; margin-bottom: 10px; }
+    #exitOverlayMessage { font-size: 0.92rem; color: #475569; line-height: 1.6; margin-bottom: 12px; }
+    #exitOverlayCountdownDigits { font-size: 3rem; font-weight: 800; text-align: center; color: #dc2626; margin: 12px 0 20px; }
+    #exitOverlayStay { border: 2px solid #cbd5e1; background: #f1f5f9; color: #2563eb; }
+    #exitOverlayLeave { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
+
+    @media (max-width: 768px) {
+      body { padding-top: 100px; }
+      header { flex-wrap: wrap; padding: 14px 20px; }
+      main { margin: 16px auto 40px; padding: 24px 16px 40px; border-radius: 14px; }
+      .card { padding: 24px 18px 32px; }
+      .section-body { padding: 16px; }
+      .name-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1 id="examTitleHeader">Concours Parcoursup — Ascencia Business School</h1>
+      <span class="ascencia-badge">Ascencia BS</span>
+    </div>
+    <div id="timer"></div>
+  </header>
+
+  <main>
+    <span id="langSentinel" style="display:none;">This sentence is used to detect automatic translation of the exam page.</span>
+
+    <!-- LOGIN -->
+    <section id="login" class="card">
+      <h2 style="margin-bottom: 6px;">Concours d'entrée</h2>
+      <p style="text-align:center; color:#64748b; margin-bottom: 28px; font-size: 0.95rem;">
+        Renseignez vos informations pour commencer. Vous disposerez de
+        <strong style="color:#2563eb;">20 minutes</strong> pour répondre aux 65 questions.
+      </p>
+      <div style="background:#f8f9fc; padding:22px; border-radius:12px; margin-bottom:20px;">
+        <label>Nom et prénom</label>
+        <div class="name-row">
+          <div class="field"><input type="text" id="studentLastName" class="upper" placeholder="NOM" required></div>
+          <div class="field"><input type="text" id="studentFirstName" placeholder="Prénom" required></div>
+        </div>
+        <label>Adresse e-mail</label>
+        <input type="email" id="studentEmail" placeholder="votre.email@example.com" required>
+        <label>Session</label>
+        <select id="groupSelect" required>
+          <option value="">Sélectionnez votre session</option>
+          <option value="Session du 21 avril 2026">Session du 21 avril 2026</option>
+          <option value="Session du 22 avril 2026">Session du 22 avril 2026</option>
+          <option value="Session du 23 avril 2026">Session du 23 avril 2026</option>
+        </select>
+        <label>Code d'accès</label>
+        <input type="text" id="classCode" placeholder="Code fourni par Ascencia" required>
+      </div>
+      <div class="btn-row center">
+        <button id="startBtn" type="button" style="font-size:1rem; padding:15px 44px;">Commencer →</button>
+      </div>
+    </section>
+
+    <!-- CONFIRM -->
+    <section id="confirm" class="card" style="display:none;">
+      <h2 style="margin-bottom:20px;">Avant de commencer</h2>
+      <div style="background:#fef3c7; border-left:4px solid #f59e0b; padding:18px; border-radius:8px; margin-bottom:24px;">
+        <p style="margin:0 0 10px 0; font-weight:600; color:#92400e;">Règles de l'épreuve</p>
+        <ul style="margin:0; padding-left:20px; color:#78350f; font-size:0.9rem;">
+          <li style="margin-bottom:7px;">L'épreuve se déroule en <strong>plein écran</strong>.</li>
+          <li style="margin-bottom:7px;">Si vous quittez la fenêtre, un <strong>avertissement</strong> apparaît.</li>
+          <li style="margin-bottom:7px;">Vous avez <strong>15 secondes</strong> pour revenir, sinon l'épreuve est arrêtée.</li>
+          <li style="margin-bottom:7px;">Après <strong>3 sorties</strong>, le concours est <strong>soumis automatiquement</strong>.</li>
+          <li>Tous les événements sont enregistrés dans un <strong>journal de session</strong>.</li>
+        </ul>
+      </div>
+      <p style="font-weight:600; color:#0f172a; margin-bottom:14px;">Vérifiez vos informations</p>
+      <div style="display:grid; gap:10px; margin-bottom:20px;">
+        <div style="background:#f8f9fc; padding:14px 18px; border-radius:10px; border:2px solid #e2e8f0;">
+          <div style="font-size:0.8rem; color:#64748b; font-weight:700; text-transform:uppercase; margin-bottom:3px;">Nom & Prénom</div>
+          <div style="font-weight:600; color:#0f172a;" id="confirmName"></div>
+        </div>
+        <div style="background:#f8f9fc; padding:14px 18px; border-radius:10px; border:2px solid #e2e8f0;">
+          <div style="font-size:0.8rem; color:#64748b; font-weight:700; text-transform:uppercase; margin-bottom:3px;">Email</div>
+          <div style="font-weight:600; color:#0f172a;" id="confirmEmail"></div>
+        </div>
+        <div style="background:#f8f9fc; padding:14px 18px; border-radius:10px; border:2px solid #e2e8f0;">
+          <div style="font-size:0.8rem; color:#64748b; font-weight:700; text-transform:uppercase; margin-bottom:3px;">Session</div>
+          <div style="font-weight:600; color:#0f172a;" id="confirmGroup"></div>
+        </div>
+      </div>
+      <div class="btn-row between">
+        <button type="button" class="btn-light" id="confirmBackBtn">← Modifier</button>
+        <button type="button" id="confirmBeginBtn" style="padding:13px 36px;">Commencer le concours →</button>
+      </div>
+    </section>
+
+    <!-- EXAM -->
+    <section id="exam" style="display:none;">
+      <form id="examForm">
+        <input type="hidden" id="studentNameField">
+        <input type="hidden" id="studentEmailField">
+        <input type="hidden" id="groupNameField">
+
+        <div class="progress-summary">
+          <div>
+            <div style="font-size:1.4rem; font-weight:800; color:#0f172a;">Concours Parcoursup</div>
+            <div style="font-size:0.88rem; color:#64748b;">Répondez aux 65 questions</div>
+          </div>
+          <div id="totalProgress" class="progress-badge">0 / 65 répondues</div>
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+
+        <div id="examContent"></div>
+
+        <div class="btn-row center" style="margin-top:32px;">
+          <button type="submit" id="submitBtn" style="font-size:1rem; padding:15px 48px;">Soumettre le concours</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Exit Overlay -->
+  <div id="exitOverlay">
+    <div>
+      <h2>Quitter le concours ?</h2>
+      <div id="exitOverlayStrike"></div>
+      <p id="exitOverlayMessage"></p>
+      <div id="exitOverlayCountdownDigits">15</div>
+      <div style="display:flex; justify-content:flex-end; gap:12px;">
+        <button type="button" id="exitOverlayStay">Rester dans l'épreuve</button>
+        <button type="button" id="exitOverlayLeave">Quitter et effacer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <script>
+  // ============================================================
+  //  CONFIG
+  // ============================================================
+  const EXAM_CONFIG = {
+    examId:           "ASCENCIA_PARCOURSUP_2026",
+    classCodes:       {
+      "Session du 21 avril 2026": "ASC2104",
+      "Session du 22 avril 2026": "ASC2204",
+      "Session du 23 avril 2026": "ASC2304"
+    },
+    debugCode:        "DEBUG",
+    examTitleBase:    "Concours Parcoursup — Ascencia Business School",
+    timeLimitMinutes: 20,
+    emailSubject:     "Concours Parcoursup Ascencia — (SESSION) — (NAME)"
+  };
+
+  // ============================================================
+  //  QUESTION DATA
+  // ============================================================
+  const SECTIONS = [
+    {
+      id: "p1", title: "Partie 1 — Culture Générale", color: "#0f172a",
+      questions: [
+        { text: "Quelle est la capitale de l'Espagne ?", options: ["Barcelone","Madrid","Séville","Valence"], correct: 1 },
+        { text: "Quelle entreprise est à l'origine de l'iPhone ?", options: ["Samsung","Microsoft","Apple","Google"], correct: 2 },
+        { text: "Quel réseau social est principalement orienté vers le monde professionnel ?", options: ["Instagram","TikTok","LinkedIn","Snapchat"], correct: 2 },
+        { text: "Qui est l'auteur de \"Les Misérables\" ?", options: ["Émile Zola","Victor Hugo","Albert Camus","Gustave Flaubert"], correct: 1 },
+        { text: "L'Union européenne compte actuellement :", options: ["27 pays","28 pays","26 pays","30 pays"], correct: 0 },
+        { text: "Les JO 2024 ont eu lieu à :", options: ["Londres","Tokyo","Paris","Los Angeles"], correct: 2 },
+        { text: "L'OTAN dépend de :", options: ["L'ONU","L'Union européenne","Aucune des deux","Le G20"], correct: 2 },
+        { text: "Le Brexit concerne :", options: ["Une sortie de l'euro","Une sortie de l'Union européenne","Une crise politique","Une guerre"], correct: 1 },
+        { text: "Le G20 est composé :", options: ["De 20 entreprises","De 20 économies majeures","De 20 présidents","De 20 ONG"], correct: 1 },
+        { text: "La COP concerne :", options: ["Le commerce","Le climat","La santé","L'éducation"], correct: 1 },
+        { text: "L'ONU a un pouvoir :", options: ["Militaire direct","De décision mondiale obligatoire","Limité et diplomatique","Économique uniquement"], correct: 2 },
+        { text: "Une start-up est forcément :", options: ["Petite","Innovante","Rentable","Internationale"], correct: 1 },
+        { text: "Tesla vend principalement :", options: ["Des logiciels","Des voitures électriques","Des téléphones","Des avions"], correct: 1 },
+        { text: "L'IA générative sert à :", options: ["Transporter","Créer du contenu","Produire de l'énergie","Construire"], correct: 1 },
+        { text: "TikTok appartient à une entreprise :", options: ["Américaine","Chinoise","Européenne","Japonaise"], correct: 1 },
+      ]
+    },
+    {
+      id: "p2", title: "Partie 2 — Commerce & Négociation", color: "#0f172a",
+      questions: [
+        { text: "L'objectif principal d'un commercial est de :", options: ["Produire","Vendre et fidéliser","Recruter","Former"], correct: 1 },
+        { text: "La phase de découverte consiste à :", options: ["Conclure la vente","Poser des questions","Donner le prix","Livrer"], correct: 1 },
+        { text: "Une objection client est :", options: ["Une commande","Un refus ou doute","Un paiement","Une livraison"], correct: 1 },
+        { text: "\"Transformer un besoin en vente\" signifie :", options: ["Produire","Convaincre le client","Embaucher","Former"], correct: 1 },
+        { text: "Un client dit \"c'est trop cher\", vous devez :", options: ["Refuser","Argumenter sur la valeur","Ignorer","Baisser immédiatement"], correct: 1 },
+        { text: "La fidélisation vise à :", options: ["Trouver de nouveaux clients","Garder les clients","Réduire les coûts","Licencier"], correct: 1 },
+        { text: "Le closing correspond à :", options: ["L'accueil","La conclusion de vente","La livraison","La facturation"], correct: 1 },
+        { text: "Le CRM sert à :", options: ["Produire","Gérer la relation client","Livrer","Payer"], correct: 1 },
+        { text: "Un prospect est :", options: ["Un client fidèle","Un client potentiel","Un fournisseur","Un employé"], correct: 1 },
+        { text: "La concurrence oblige à :", options: ["Copier","Se différencier","Baisser les prix","Arrêter la commercialisation"], correct: 1 },
+        { text: "Que signifie « TVA » ?", options: ["Taxe sur Valeur Ajoutée","Taux Variable Annuel","Taxe Vente Achat","Total Vente Annuel"], correct: 0 },
+        { text: "Que signifie « PIB » ?", options: ["Produit Industriel Brut","Produit Intérieur Brut","Profit International Bancaire","Production Interne de Base"], correct: 1 },
+        { text: "Que signifie « BtoB » ?", options: ["Business to Bank","Business to Business","Back to Business","Brand to Buyer"], correct: 1 },
+        { text: "Une marge correspond :", options: ["Au chiffre d'affaires","Au bénéfice","À la différence prix/coût","Au salaire"], correct: 2 },
+      ]
+    },
+    {
+      id: "p3", title: "Partie 3 — Logique", color: "#0f172a",
+      questions: [
+        { text: "Suite : 2 – 4 – 8 – 16 – ?", options: ["18","24","32","20"], correct: 2 },
+        { text: "Suite : 5 – 10 – 20 – ?", options: ["25","30","40","35"], correct: 2 },
+        { text: "Suite : 1 – 3 – 6 – 10 – ?", options: ["12","13","15","16"], correct: 2 },
+        { text: "Une montre et un sac coûtent 110€. La montre coûte 100€ de plus que le sac. Quel est le prix du sac ?", options: ["5€","10€","15€","20€"], correct: 0 },
+        { text: "Si 2 commerciaux font 10 ventes, combien 4 commerciaux en font-ils ?", options: ["10","15","20","40"], correct: 2 },
+      ]
+    },
+    {
+      id: "p4", title: "Partie 4 — Calcul Commercial", color: "#0f172a",
+      questions: [
+        { text: "Prix 100€ avec remise 10% → prix final ?", options: ["80€","85€","90€","95€"], correct: 2 },
+        { text: "200€ + TVA 20% = ?", options: ["220€","240€","260€","280€"], correct: 1 },
+        { text: "Une remise de 20€ sur 100€ représente :", options: ["10%","15%","20%","25%"], correct: 2 },
+        { text: "1 produit acheté 10€, vendu 20€ → marge ?", options: ["5€","10€","15€","20€"], correct: 1 },
+        { text: "120€ avec remise 50% = ?", options: ["50€","60€","70€","80€"], correct: 1 },
+        { text: "Prix HT 80€, TVA 20% → prix TTC ?", options: ["90€","96€","100€","110€"], correct: 1 },
+      ]
+    },
+    {
+      id: "p5", title: "Partie 5 — Anglais", color: "#0f172a",
+      passage: null,
+      questions: [
+        { text: "If I ___ more time, I would apply for the job.", options: ["have","had","will have","having"], correct: 1 },
+        { text: "She ___ in this company since 2022.", options: ["works","worked","has worked","is working"], correct: 2 },
+        { text: "We ___ a meeting when the client called.", options: ["have","had","were having","are having"], correct: 2 },
+        { text: "This product is ___ than the previous one.", options: ["more efficient","efficienter","most efficient","efficiently"], correct: 0 },
+        { text: "He doesn't have ___ experience in sales.", options: ["many","much","lot","few"], correct: 1 },
+        { text: "They ___ to launch a new product next month.", options: ["go","are going","going","goes"], correct: 1 },
+        { text: "I haven't finished my work ___.", options: ["already","yet","since","for"], correct: 1 },
+        { text: "This is the company ___ hired me.", options: ["who","which","where","what"], correct: 1 },
+        { text: "We need to focus ___ customer satisfaction.", options: ["on","in","at","for"], correct: 0 },
+        { text: "She is responsible ___ marketing.", options: ["of","in","for","to"], correct: 2 },
+        { text: "If they lower the price, they ___ more products.", options: ["sell","will sell","sold","selling"], correct: 1 },
+        { text: "I ___ never worked in a startup before.", options: ["have","had","did","was"], correct: 0 },
+        { text: "The manager asked me ___ the report.", options: ["send","to send","sending","sent"], correct: 1 },
+        { text: "There are ___ customers today than yesterday.", options: ["much","more","many","most"], correct: 1 },
+        { text: "\"To increase sales\" means:", options: ["Réduire les ventes","Augmenter les ventes","Stabiliser les ventes","Supprimer les ventes"], correct: 1 },
+        { text: "A \"target market\" is:", options: ["A competitor","A group of potential customers","A product","A price"], correct: 1 },
+        { text: "\"A supplier\" is:", options: ["A customer","A competitor","A company that provides goods","An employee"], correct: 2 },
+        { text: "\"A deadline\" is:", options: ["Une réunion","Une date limite","Un contrat","Un projet"], correct: 1 },
+        { text: "\"To launch a product\" means:", options: ["Arrêter","Créer","Mettre sur le marché","Tester"], correct: 2 },
+        { text: "\"A complaint\" is:", options: ["Une commande","Une réclamation","Une offre","Une promotion"], correct: 1 },
+        // Reading comprehension
+        { text: "Texte : \"The company increased its prices last year, but sales remained stable. This year, it plans to improve customer experience to attract more clients.\"\n\nWhat happened last year?", options: ["Prices decreased","Sales increased","Prices increased","Customers left"], correct: 2, hasPassage: true },
+        { text: "How were sales last year?", options: ["Decreasing","Increasing","Stable","High"], correct: 2 },
+        { text: "What is the company's plan this year?", options: ["Reduce prices","Improve customer experience","Hire employees","Close stores"], correct: 1 },
+        { text: "Why does the company want to improve customer experience?", options: ["To reduce costs","To attract more clients","To fire employees","To change products"], correct: 1 },
+        { text: "The company's strategy is mainly about:", options: ["Price only","Customer focus","Production","Finance"], correct: 1 },
+      ]
+    }
+  ];
+
+  const TOTAL_QUESTIONS = SECTIONS.reduce((sum, s) => sum + s.questions.length, 0);
+
+  // ============================================================
+  //  STATE
+  // ============================================================
+  const DEADLINE_KEY = "examDeadline_" + EXAM_CONFIG.examId;
+  let examDeadline = null, timer = null;
+  let isMobile = false, safeBlurUntil = 0;
+  let violationCount = 0;
+  const MAX_VIOLATIONS = 3;
+  let exitCountdownTimer = null, exitSecondsRemaining = 0;
+  let selectedGroup = "";
+  let examActive = false, examSubmitted = false, isStartingExam = false;
+  let exitPromptOpen = false, antiCheatSuspendedUntil = 0;
+  const sessionEvents = [];
+
+  (function restoreDeadline() {
+    const stored = localStorage.getItem(DEADLINE_KEY);
+    if (!stored) return;
+    const parsed = parseInt(stored, 10);
+    if (!Number.isNaN(parsed) && parsed > Date.now()) examDeadline = parsed;
+    else localStorage.removeItem(DEADLINE_KEY);
+  })();
+
+  // ============================================================
+  //  HELPERS
+  // ============================================================
+  function armSafeBlur(ms = 1200) { safeBlurUntil = Date.now() + ms; }
+  function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+  function logEvent(label, detail) { sessionEvents.push({ time: new Date().toLocaleTimeString("fr-FR"), label, detail: detail || "" }); }
+
+  function updateProgress() {
+    let answered = 0;
+    document.querySelectorAll(".mcq-question").forEach(q => {
+      if (q.querySelector("input[type='radio']:checked")) answered++;
+    });
+    const pct = Math.round((answered / TOTAL_QUESTIONS) * 100);
+    const fill = document.getElementById("progressFill");
+    const badge = document.getElementById("totalProgress");
+    if (fill) fill.style.width = pct + "%";
+    if (badge) {
+      badge.textContent = `${answered} / ${TOTAL_QUESTIONS} répondues`;
+      badge.classList.toggle("complete", answered === TOTAL_QUESTIONS);
+    }
+  }
+
+  // ============================================================
+  //  BUILD EXAM
+  // ============================================================
+  function buildExam() {
+    const container = document.getElementById("examContent");
+    container.innerHTML = "";
+    let globalQ = 0;
+
+    SECTIONS.forEach(section => {
+      const block = document.createElement("div");
+      block.className = "section-block";
+
+      block.innerHTML = `
+        <div class="section-header">
+          <span class="section-title">${section.title}</span>
+          <span class="section-count">${section.questions.length} question${section.questions.length > 1 ? "s" : ""}</span>
+        </div>
+        <div class="section-body" id="body_${section.id}"></div>
+      `;
+
+      const body = block.querySelector(`#body_${section.id}`);
+
+      section.questions.forEach((q, qi) => {
+        globalQ++;
+        const qNum = globalQ;
+        const qId = `${section.id}_q${qi}`;
+
+        // Show reading passage before first comprehension question
+        if (q.hasPassage) {
+          const passage = document.createElement("div");
+          passage.className = "reading-passage";
+          passage.innerHTML = `<strong>Texte à lire :</strong><br><br>"The company increased its prices last year, but sales remained stable. This year, it plans to improve customer experience to attract more clients."`;
+          body.appendChild(passage);
+        }
+
+        const div = document.createElement("div");
+        div.className = "mcq-question";
+        div.dataset.qid = qId;
+
+        // For questions that reference the passage, use shorter text
+        const displayText = q.hasPassage ? q.text.replace(/Texte :.*?\n\n/, "") : q.text;
+
+        div.innerHTML = `
+          <div class="mcq-question-header">Question ${qNum} sur ${TOTAL_QUESTIONS}</div>
+          <div class="mcq-question-body">
+            <div class="mcq-question-text">${displayText.replace(/\n/g, "<br>")}</div>
+            <div class="mcq-options">
+              ${q.options.map((opt, oi) => `
+                <label class="mcq-option" data-qid="${qId}" data-oi="${oi}">
+                  <input type="radio" name="${qId}" value="${oi}">
+                  <span>${opt}</span>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        `;
+
+        div.querySelectorAll(".mcq-option").forEach(label => {
+          label.addEventListener("click", () => {
+            div.classList.add("answered");
+            div.querySelectorAll(".mcq-option").forEach(l => l.classList.remove("selected"));
+            label.classList.add("selected");
+            updateProgress();
+          });
+        });
+
+        body.appendChild(div);
+      });
+
+      container.appendChild(block);
+    });
+  }
+
+  // ============================================================
+  //  TIMER
+  // ============================================================
+  function startTimer() {
+    clearInterval(timer);
+    const timerEl = document.getElementById("timer");
+    timer = setInterval(() => {
+      if (!examDeadline) return;
+      const rem = Math.max(0, Math.floor((examDeadline - Date.now()) / 1000));
+      const m = Math.floor(rem / 60), s = rem % 60;
+      if (timerEl) {
+        timerEl.textContent = `Temps restant : ${m}:${String(s).padStart(2,"0")}`;
+        const isLow = rem <= 3 * 60;
+        timerEl.style.background = isLow ? "linear-gradient(135deg,#dc2626,#b91c1c)" : "linear-gradient(135deg,#2563eb,#1d4ed8)";
+        timerEl.style.borderColor = isLow ? "#dc2626" : "#2563eb";
+      }
+      if (rem <= 0) { clearInterval(timer); submitExam("Temps écoulé — soumission automatique."); }
+    }, 1000);
+  }
+
+  // ============================================================
+  //  ANTI-CHEAT
+  // ============================================================
+  function setOverlayActive(on) {
+    document.body.classList.toggle("overlay-active", on);
+  }
+
+  function askToExitExam(reason, source) {
+    if (!examActive || examSubmitted || exitPromptOpen) return;
+    if (Date.now() < antiCheatSuspendedUntil) return;
+    violationCount++;
+
+    const overlay = document.getElementById("exitOverlay");
+    const strike = document.getElementById("exitOverlayStrike");
+    const msg = document.getElementById("exitOverlayMessage");
+    const dig = document.getElementById("exitOverlayCountdownDigits");
+
+    if (violationCount >= MAX_VIOLATIONS) {
+      logEvent("Limite atteinte", `${source} — violation #${violationCount} — soumission auto`);
+      if (overlay) overlay.style.display = "none";
+      setOverlayActive(false);
+      alert("Le concours a été soumis automatiquement après 3 sorties d'écran.");
+      submitExam("Anti-triche : 3 événements — soumission automatique.");
+      return;
+    }
+
+    exitPromptOpen = true;
+    if (strike) strike.textContent = `Avertissement ${violationCount} / ${MAX_VIOLATIONS - 1}`;
+    if (msg) msg.textContent = (reason || "Vous avez quitté l'écran du concours.") + ` Au-delà de ${MAX_VIOLATIONS - 1} avertissements, le concours sera soumis automatiquement.`;
+    if (overlay) overlay.style.display = "flex";
+    setOverlayActive(true);
+
+    exitSecondsRemaining = 15;
+    if (dig) dig.textContent = exitSecondsRemaining;
+    if (exitCountdownTimer) clearInterval(exitCountdownTimer);
+    exitCountdownTimer = setInterval(() => {
+      exitSecondsRemaining--;
+      if (dig) dig.textContent = exitSecondsRemaining;
+      if (exitSecondsRemaining <= 0) {
+        clearInterval(exitCountdownTimer);
+        exitPromptOpen = false;
+        if (overlay) overlay.style.display = "none";
+        setOverlayActive(false);
+        terminateExam("Vous n'êtes pas revenu à temps. Le concours est arrêté.");
+      }
+    }, 1000);
+    logEvent("Avertissement affiché", `${source} — violation #${violationCount}`);
+  }
+
+  function terminateExam(message) {
+    if (!examActive) return;
+    examActive = false;
+    if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
+    setOverlayActive(false);
+    logEvent("Concours arrêté", message);
+    alert(message);
+    resetToLanding();
+  }
+
+  // ============================================================
+  //  SUBMIT
+  // ============================================================
+  function submitExam(autoReason) {
+    if (examSubmitted) return;
+    examSubmitted = true;
+    clearInterval(timer);
+
+    const btn = document.getElementById("submitBtn");
+    if (btn) { btn.disabled = true; btn.textContent = "Envoi en cours…"; }
+
+    logEvent("Concours soumis", autoReason || "Soumission manuelle");
+
+    const studentName  = document.getElementById("studentNameField").value;
+    const studentEmail = document.getElementById("studentEmailField").value;
+    const group        = selectedGroup;
+
+    let minutesUsed = EXAM_CONFIG.timeLimitMinutes;
+    if (examDeadline) {
+      const rem = examDeadline - Date.now();
+      minutesUsed = EXAM_CONFIG.timeLimitMinutes - Math.max(0, Math.floor(rem / 60000));
+    }
+
+    // Grade all sections
+    let totalScore = 0, totalMax = 0;
+    let reportSections = "";
+
+    SECTIONS.forEach(section => {
+      let sectionScore = 0;
+      let rows = "";
+      section.questions.forEach((q, qi) => {
+        const qId = `${section.id}_q${qi}`;
+        const checked = document.querySelector(`input[name="${qId}"]:checked`);
+        const studentOi = checked ? parseInt(checked.value, 10) : -1;
+        const ok = studentOi === q.correct;
+        if (ok) { sectionScore++; totalScore++; }
+        totalMax++;
+        const studentAns = studentOi >= 0 ? q.options[studentOi] : "Sans réponse";
+        const correctAns = q.options[q.correct];
+        rows += `<tr>
+          <td style="padding:6px 10px;border:1px solid #e2e8f0;font-size:12px;">${q.text.replace(/\n.*/,"")}</td>
+          <td style="padding:6px 10px;border:1px solid #e2e8f0;font-size:12px;">${studentAns}</td>
+          <td style="padding:6px 10px;border:1px solid #e2e8f0;font-size:12px;">${correctAns}</td>
+          <td style="padding:6px 10px;border:1px solid #e2e8f0;font-size:12px;color:${ok?"#166534":"#991b1b"};font-weight:700;">${ok?"✅":"❌"}</td>
+        </tr>`;
+      });
+
+      reportSections += `
+        <h3 style="color:#1e293b;margin:20px 0 8px 0;font-size:15px;">${section.title} — ${sectionScore} / ${section.questions.length}</h3>
+        <table style="border-collapse:collapse;width:100%;margin-bottom:16px;font-size:13px;">
+          <thead><tr style="background:#0f172a;color:#fff;text-align:left;">
+            <th style="padding:7px 10px;border:1px solid #1e293b;">Question</th>
+            <th style="padding:7px 10px;border:1px solid #1e293b;">Réponse candidat</th>
+            <th style="padding:7px 10px;border:1px solid #1e293b;">Bonne réponse</th>
+            <th style="padding:7px 10px;border:1px solid #1e293b;">Résultat</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    });
+
+    // Session log
+    let sessionLog = "";
+    if (sessionEvents.length > 0) {
+      const logRows = sessionEvents.map(e => `<tr>
+        <td style="padding:5px 8px;border:1px solid #e2e8f0;font-size:11px;">${e.time}</td>
+        <td style="padding:5px 8px;border:1px solid #e2e8f0;font-size:11px;">${e.label}</td>
+        <td style="padding:5px 8px;border:1px solid #e2e8f0;font-size:11px;">${e.detail}</td>
+      </tr>`).join("");
+      sessionLog = `
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;">
+        <h4 style="color:#0f172a;margin:0 0 8px 0;">Journal de session</h4>
+        <table style="border-collapse:collapse;width:100%;font-size:11px;">
+          <thead><tr style="background:#f1f5f9;">
+            <th style="padding:5px 8px;border:1px solid #e2e8f0;">Heure</th>
+            <th style="padding:5px 8px;border:1px solid #e2e8f0;">Événement</th>
+            <th style="padding:5px 8px;border:1px solid #e2e8f0;">Détail</th>
+          </tr></thead>
+          <tbody>${logRows}</tbody>
+        </table>`;
+    } else {
+      sessionLog = `<hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;"><p style="font-size:12px;color:#64748b;">Aucun incident détecté.</p>`;
+    }
+
+    const scoreColor = totalScore >= totalMax * 0.7 ? "#166534" : totalScore >= totalMax * 0.5 ? "#854d0e" : "#991b1b";
+
+    const htmlReport = `
+      <h2 style="color:#0f172a;margin:0 0 4px 0;">Concours Parcoursup — Ascencia Business School</h2>
+      <h3 style="font-weight:500;color:#475569;margin:0 0 16px 0;">${studentName}</h3>
+
+      <table style="border-collapse:collapse;width:100%;max-width:460px;font-size:13px;margin-bottom:20px;background:#f8f9fc;">
+        <tr><td style="padding:6px 12px;"><b>Session :</b></td><td style="padding:6px 12px;">${group}</td></tr>
+        <tr><td style="padding:6px 12px;"><b>Email :</b></td><td style="padding:6px 12px;">${studentEmail}</td></tr>
+        <tr><td style="padding:6px 12px;"><b>Temps utilisé :</b></td><td style="padding:6px 12px;">~${minutesUsed} min</td></tr>
+      </table>
+
+      <div style="background:#f0fdf4;border:2px solid #86efac;border-radius:10px;padding:16px 20px;margin-bottom:24px;max-width:300px;">
+        <div style="font-size:0.8rem;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Score total</div>
+        <div style="font-size:2.2rem;font-weight:800;color:${scoreColor};">${totalScore} / ${totalMax}</div>
+        <div style="font-size:0.85rem;color:#64748b;">${Math.round((totalScore/totalMax)*100)}%</div>
+      </div>
+
+      <hr style="border:none;border-top:2px solid #e2e8f0;margin:0 0 16px 0;">
+      ${reportSections}
+      ${sessionLog}
+      <div style="margin-top:20px;font-size:11px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:10px;">
+        <em>Concours Parcoursup — Ascencia Business School · Généré automatiquement</em>
+      </div>`;
+
+    const subject = EXAM_CONFIG.emailSubject
+      .replace("(SESSION)", group)
+      .replace("(NAME)", studentName);
+
+    if (window.emailjs) {
+      emailjs.send(
+        "service_opm4h6b",
+        "template_r0u784p",
+        { from_name: studentName, from_email: studentEmail, subject, message_html: htmlReport },
+        "Bb0oPYBiZGQcyIz5r"
+      ).then(() => {
+        alert("✅ Concours soumis avec succès. Merci !");
+        localStorage.removeItem(DEADLINE_KEY);
+        examDeadline = null;
+        resetToLanding();
+      }).catch(err => {
+        const msg = err?.text || err?.message || JSON.stringify(err);
+        alert("❌ Erreur lors de l'envoi : " + msg);
+        examSubmitted = false;
+        if (btn) { btn.disabled = false; btn.textContent = "Soumettre le concours"; }
+      });
+    } else {
+      alert("EmailJS non chargé.");
+      examSubmitted = false;
+      if (btn) { btn.disabled = false; btn.textContent = "Soumettre le concours"; }
+    }
+  }
+
+  // ============================================================
+  //  RESET
+  // ============================================================
+  function resetToLanding() {
+    clearInterval(timer);
+    if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
+    examActive = examSubmitted = isStartingExam = exitPromptOpen = false;
+    antiCheatSuspendedUntil = 0; violationCount = 0;
+    sessionEvents.length = 0; selectedGroup = "";
+    setOverlayActive(false);
+
+    const timerEl = document.getElementById("timer");
+    if (timerEl) { timerEl.textContent = ""; timerEl.style.display = "none"; }
+
+    document.getElementById("login").style.display   = "block";
+    document.getElementById("confirm").style.display  = "none";
+    document.getElementById("exam").style.display     = "none";
+    document.getElementById("exitOverlay").style.display = "none";
+
+    ["studentFirstName","studentLastName","studentEmail","classCode"].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = "";
+    });
+    const gs = document.getElementById("groupSelect"); if (gs) gs.value = "";
+  }
+
+  // ============================================================
+  //  DOM READY
+  // ============================================================
+  document.addEventListener("DOMContentLoaded", () => {
+    const ua = navigator.userAgent;
+    isMobile = /Mobi|Android|iPad|iPhone|iPod/i.test(ua);
+
+    document.addEventListener("contextmenu", e => e.preventDefault(), { capture: true });
+
+    if (window.emailjs) {
+      try { emailjs.init({ publicKey: "Bb0oPYBiZGQcyIz5r" }); } catch(e) { console.error(e); }
+    }
+
+    // Translation sentinel
+    const sentinel = document.getElementById("langSentinel");
+    const baseline = sentinel ? sentinel.textContent.trim() : null;
+    if (sentinel && baseline) {
+      setInterval(() => {
+        if (!examActive || examSubmitted) return;
+        if (sentinel.textContent.trim() !== baseline) {
+          askToExitExam("Traduction automatique détectée. Désactivez la traduction.", "translationWatch");
+        }
+      }, 2000);
+    }
+
+    resetToLanding();
+
+    document.getElementById("studentLastName").addEventListener("input", function() {
+      this.value = this.value.toUpperCase();
+    });
+
+    // LOGIN → CONFIRM
+    document.getElementById("startBtn").addEventListener("click", () => {
+      const firstName = document.getElementById("studentFirstName").value.trim();
+      const lastName  = document.getElementById("studentLastName").value.trim().toUpperCase();
+      const email     = document.getElementById("studentEmail").value.trim();
+      const code      = document.getElementById("classCode").value.trim().toUpperCase();
+      const group     = document.getElementById("groupSelect").value;
+
+      if (!firstName || !lastName || !email) { alert("Merci de remplir toutes les informations."); return; }
+      if (!group) { alert("Merci de sélectionner votre session."); return; }
+
+      const expectedCode = EXAM_CONFIG.classCodes[group];
+      if (code !== expectedCode && code !== EXAM_CONFIG.debugCode) {
+        alert("Code d'accès invalide pour cette session.");
+        return;
+      }
+
+      selectedGroup = group;
+      document.getElementById("confirmName").textContent  = `${lastName} ${firstName}`;
+      document.getElementById("confirmEmail").textContent = email;
+      document.getElementById("confirmGroup").textContent = group;
+      document.getElementById("login").style.display   = "none";
+      document.getElementById("confirm").style.display  = "block";
+      scrollToTop();
+    });
+
+    document.getElementById("confirmBackBtn").addEventListener("click", () => {
+      document.getElementById("confirm").style.display = "none";
+      document.getElementById("login").style.display   = "block";
+      scrollToTop();
+    });
+
+    // CONFIRM → BEGIN
+    document.getElementById("confirmBeginBtn").addEventListener("click", () => {
+      const firstName = document.getElementById("studentFirstName").value.trim();
+      const lastName  = document.getElementById("studentLastName").value.trim().toUpperCase();
+      const email     = document.getElementById("studentEmail").value.trim();
+      const fullName  = `${lastName} ${firstName}`;
+
+      document.getElementById("studentNameField").value  = fullName;
+      document.getElementById("studentEmailField").value = email;
+      document.getElementById("groupNameField").value    = selectedGroup;
+
+      document.getElementById("confirm").style.display = "none";
+      document.getElementById("exam").style.display    = "block";
+
+      examActive = true; examSubmitted = false; violationCount = 0;
+
+      if (!examDeadline) {
+        examDeadline = Date.now() + EXAM_CONFIG.timeLimitMinutes * 60 * 1000;
+        localStorage.setItem(DEADLINE_KEY, String(examDeadline));
+      } else if (Date.now() > examDeadline) {
+        alert("Le délai est écoulé.");
+        examActive = false;
+        document.getElementById("exam").style.display  = "none";
+        document.getElementById("login").style.display = "block";
+        return;
+      }
+
+      logEvent("Concours démarré", `Session: ${selectedGroup}, Candidat: ${fullName}`);
+      isStartingExam = true;
+      setTimeout(() => { isStartingExam = false; }, 1500);
+
+      const timerEl = document.getElementById("timer");
+      if (timerEl) timerEl.style.display = "inline-block";
+
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+
+      startTimer();
+      buildExam();
+      scrollToTop();
+    });
+
+    // SUBMIT
+    document.getElementById("examForm").addEventListener("submit", e => {
+      e.preventDefault();
+      submitExam();
+    });
+
+    // EXIT OVERLAY BUTTONS
+    document.getElementById("exitOverlayStay").addEventListener("click", () => {
+      if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
+      antiCheatSuspendedUntil = Date.now() + 2000;
+      exitPromptOpen = false;
+      document.getElementById("exitOverlay").style.display = "none";
+      setOverlayActive(false);
+      logEvent("Candidat resté", `Après avertissement #${violationCount}`);
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    });
+
+    document.getElementById("exitOverlayLeave").addEventListener("click", () => {
+      if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
+      exitPromptOpen = false;
+      document.getElementById("exitOverlay").style.display = "none";
+      setOverlayActive(false);
+      terminateExam("Vous avez quitté le concours. Il est arrêté et doit être recommencé.");
+    });
+
+    // ANTI-CHEAT LISTENERS
+    document.addEventListener("visibilitychange", () => {
+      if (isStartingExam || !examActive || examSubmitted) return;
+      if (Date.now() < antiCheatSuspendedUntil) return;
+      if (document.hidden) {
+        logEvent("Fenêtre masquée", "visibilitychange");
+        askToExitExam("Vous avez quitté l'écran du concours.", "visibilitychange");
+      }
+    });
+
+    window.addEventListener("blur", () => {
+      if (isStartingExam || !examActive || examSubmitted) return;
+      if (isMobile && Date.now() < safeBlurUntil) return;
+      if (Date.now() < antiCheatSuspendedUntil) return;
+      logEvent("Focus perdu", "blur");
+      askToExitExam("Vous avez quitté la fenêtre du concours.", "blur");
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (!examActive || examSubmitted || isStartingExam) return;
+      if (Date.now() < antiCheatSuspendedUntil) return;
+      if (!document.fullscreenElement) {
+        logEvent("Plein écran quitté", "fullscreenchange");
+        askToExitExam("Vous avez quitté le mode plein écran.", "fullscreenchange");
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if ((e.key === "Escape" || e.key === "Esc") && examActive && !isStartingExam && !examSubmitted) {
+        if (Date.now() < antiCheatSuspendedUntil) return;
+        e.preventDefault();
+        logEvent("Échap pressé", "keydown");
+        askToExitExam("Vous avez appuyé sur Échap.", "keydown");
+      }
+    });
+  });
+  </script>
+</body>
+</html>
