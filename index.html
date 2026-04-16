@@ -43,38 +43,31 @@
       background: rgba(255,255,255,0.95);
       backdrop-filter: blur(20px);
       color: #1e293b;
-      padding: 16px 32px;
+      padding: 14px 32px;
       border-bottom: 1px solid rgba(226,232,240,0.8);
       box-shadow: 0 4px 20px rgba(15,23,42,0.06);
     }
 
-    .-left { display: flex; align-items: center; gap: 16px; }
-
-    .header-logo {
-  height: 44px;
-  width: auto;
-  display: block;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-     h1 {
-      margin: 0;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1e293b;
-      letter-spacing: -0.01em;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
     }
 
-    .ascencia-badge {
-      font-size: 0.72rem;
+    .header-logo {
+      height: 44px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.35rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #e85d04;
-      background: #fff4ed;
-      border: 1.5px solid #fed7aa;
-      padding: 3px 10px;
-      border-radius: 999px;
+      color: #1e293b;
+      letter-spacing: -0.02em;
     }
 
     #timer {
@@ -162,7 +155,7 @@
       margin-bottom: 32px;
     }
 
-    .section- {
+    .section-header {
       background: #0f172a;
       padding: 14px 24px;
       display: flex;
@@ -173,9 +166,14 @@
     .section-title { font-size: 1rem; font-weight: 700; color: #fff; }
     .section-count { font-size: 0.78rem; font-weight: 600; color: #94a3b8; }
 
-    .section-body { padding: 20px 24px; background: #f8f9fc; display: flex; flex-direction: column; gap: 16px; }
+    .section-body {
+      padding: 20px 24px;
+      background: #f8f9fc;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-    /* Reading passage */
     .reading-passage {
       background: #eff6ff;
       border-left: 4px solid #2563eb;
@@ -188,7 +186,6 @@
       font-style: italic;
     }
 
-    /* MCQ Question */
     .mcq-question {
       background: #fff;
       border: 2px solid #e2e8f0;
@@ -198,7 +195,7 @@
     }
     .mcq-question.answered { border-color: #86efac; background: #f0fdf4; }
 
-    .mcq-question- {
+    .mcq-question-header {
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       padding: 8px 18px;
       font-size: 0.75rem;
@@ -223,7 +220,6 @@
     .mcq-option.selected { border-color: #2563eb; background: #eff6ff; }
     .mcq-option input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: #2563eb; width: 15px; height: 15px; cursor: pointer; }
 
-    /* Progress */
     .progress-bar-wrap {
       background: #e2e8f0; border-radius: 999px; height: 6px; margin-bottom: 20px; overflow: hidden;
     }
@@ -233,15 +229,13 @@
       display: flex; justify-content: space-between; align-items: center;
       margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
     }
-    .progress-text { font-size: 0.9rem; font-weight: 600; color: #475569; }
     .progress-badge {
       font-size: 0.85rem; font-weight: 700; padding: 6px 14px;
       background: #f1f5f9; border-radius: 999px; color: #64748b;
     }
     .progress-badge.complete { background: #dcfce7; color: #166534; }
 
-    /* Anti-cheat overlay */
-    body.overlay-active main, body.overlay-active  { filter: blur(8px); pointer-events: none; }
+    body.overlay-active main, body.overlay-active header { filter: blur(8px); pointer-events: none; }
     body.overlay-active { overflow: hidden; }
 
     #exitOverlay {
@@ -264,30 +258,26 @@
     #exitOverlayStay { border: 2px solid #cbd5e1; background: #f1f5f9; color: #2563eb; }
     #exitOverlayLeave { background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; }
 
-   @media (max-width: 768px) {
-  body { padding-top: 100px; }
-  header { flex-wrap: wrap; padding: 14px 20px; }
-  main { margin: 16px auto 40px; padding: 24px 16px 40px; border-radius: 14px; }
-  .card { padding: 24px 18px 32px; }
-  .section-body { padding: 16px; }
-  .name-row { flex-direction: column; }
-
-  /* 👇 ADD THIS */
-  .header-logo {
-    height: 34px;
-  }
-}
+    @media (max-width: 768px) {
+      body { padding-top: 100px; }
+      header { flex-wrap: wrap; padding: 14px 20px; }
+      .header-logo { height: 34px; }
+      header h1 { font-size: 1.1rem; }
+      main { margin: 16px auto 40px; padding: 24px 16px 40px; border-radius: 14px; }
+      .card { padding: 24px 18px 32px; }
+      .section-body { padding: 16px; }
+      .name-row { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
   <header>
-  <div class="header-left">
-    <img src="Logo_Ascencia_Business_School p 5.png" alt="Ascencia Business School" class="header-logo">
-    <h1 id="examTitleHeader">Concours Parcoursup — Ascencia Business School</h1>
-    <span class="ascencia-badge">Ascencia BS</span>
-  </div>
-  <div id="timer"></div>
-</header>
+    <div class="header-left">
+      <img src="Logo_Ascencia_Business_School p 5.png" alt="Ascencia Business School" class="header-logo">
+      <h1 id="examTitleHeader">Concours Parcoursup — Ascencia Business School</h1>
+    </div>
+    <div id="timer"></div>
+  </header>
 
   <main>
     <span id="langSentinel" style="display:none;">This sentence is used to detect automatic translation of the exam page.</span>
@@ -398,9 +388,6 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
   <script>
-  // ============================================================
-  //  CONFIG
-  // ============================================================
   const EXAM_CONFIG = {
     examId:           "ASCENCIA_PARCOURSUP_2026",
     classCodes:       {
@@ -415,11 +402,11 @@
   };
 
   // ============================================================
-  //  QUESTION DATA
+  //  QUESTION DATA — CORRECT ANSWERS UNCHANGED FROM TEACHER KEY
   // ============================================================
   const SECTIONS = [
     {
-      id: "p1", title: "Partie 1 — Culture Générale", color: "#0f172a",
+      id: "p1", title: "Partie 1 — Culture Générale",
       questions: [
         { text: "Quelle est la capitale de l'Espagne ?", options: ["Barcelone","Madrid","Séville","Valence"], correct: 1 },
         { text: "Quelle entreprise est à l'origine de l'iPhone ?", options: ["Samsung","Microsoft","Apple","Google"], correct: 2 },
@@ -439,7 +426,7 @@
       ]
     },
     {
-      id: "p2", title: "Partie 2 — Commerce & Négociation", color: "#0f172a",
+      id: "p2", title: "Partie 2 — Commerce & Négociation",
       questions: [
         { text: "L'objectif principal d'un commercial est de :", options: ["Produire","Vendre et fidéliser","Recruter","Former"], correct: 1 },
         { text: "La phase de découverte consiste à :", options: ["Conclure la vente","Poser des questions","Donner le prix","Livrer"], correct: 1 },
@@ -458,7 +445,7 @@
       ]
     },
     {
-      id: "p3", title: "Partie 3 — Logique", color: "#0f172a",
+      id: "p3", title: "Partie 3 — Logique",
       questions: [
         { text: "Suite : 2 – 4 – 8 – 16 – ?", options: ["18","24","32","20"], correct: 2 },
         { text: "Suite : 5 – 10 – 20 – ?", options: ["25","30","40","35"], correct: 2 },
@@ -468,7 +455,7 @@
       ]
     },
     {
-      id: "p4", title: "Partie 4 — Calcul Commercial", color: "#0f172a",
+      id: "p4", title: "Partie 4 — Calcul Commercial",
       questions: [
         { text: "Prix 100€ avec remise 10% → prix final ?", options: ["80€","85€","90€","95€"], correct: 2 },
         { text: "200€ + TVA 20% = ?", options: ["220€","240€","260€","280€"], correct: 1 },
@@ -479,8 +466,7 @@
       ]
     },
     {
-      id: "p5", title: "Partie 5 — Anglais", color: "#0f172a",
-      passage: null,
+      id: "p5", title: "Partie 5 — Anglais",
       questions: [
         { text: "If I ___ more time, I would apply for the job.", options: ["have","had","will have","having"], correct: 1 },
         { text: "She ___ in this company since 2022.", options: ["works","worked","has worked","is working"], correct: 2 },
@@ -502,8 +488,7 @@
         { text: "\"A deadline\" is:", options: ["Une réunion","Une date limite","Un contrat","Un projet"], correct: 1 },
         { text: "\"To launch a product\" means:", options: ["Arrêter","Créer","Mettre sur le marché","Tester"], correct: 2 },
         { text: "\"A complaint\" is:", options: ["Une commande","Une réclamation","Une offre","Une promotion"], correct: 1 },
-        // Reading comprehension
-        { text: "Texte : \"The company increased its prices last year, but sales remained stable. This year, it plans to improve customer experience to attract more clients.\"\n\nWhat happened last year?", options: ["Prices decreased","Sales increased","Prices increased","Customers left"], correct: 2, hasPassage: true },
+        { text: "What happened last year?", options: ["Prices decreased","Sales increased","Prices increased","Customers left"], correct: 2, hasPassage: true },
         { text: "How were sales last year?", options: ["Decreasing","Increasing","Stable","High"], correct: 2 },
         { text: "What is the company's plan this year?", options: ["Reduce prices","Improve customer experience","Hire employees","Close stores"], correct: 1 },
         { text: "Why does the company want to improve customer experience?", options: ["To reduce costs","To attract more clients","To fire employees","To change products"], correct: 1 },
@@ -514,9 +499,6 @@
 
   const TOTAL_QUESTIONS = SECTIONS.reduce((sum, s) => sum + s.questions.length, 0);
 
-  // ============================================================
-  //  STATE
-  // ============================================================
   const DEADLINE_KEY = "examDeadline_" + EXAM_CONFIG.examId;
   let examDeadline = null, timer = null;
   let isMobile = false, safeBlurUntil = 0;
@@ -536,9 +518,6 @@
     else localStorage.removeItem(DEADLINE_KEY);
   })();
 
-  // ============================================================
-  //  HELPERS
-  // ============================================================
   function armSafeBlur(ms = 1200) { safeBlurUntil = Date.now() + ms; }
   function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
   function logEvent(label, detail) { sessionEvents.push({ time: new Date().toLocaleTimeString("fr-FR"), label, detail: detail || "" }); }
@@ -558,9 +537,6 @@
     }
   }
 
-  // ============================================================
-  //  BUILD EXAM
-  // ============================================================
   function buildExam() {
     const container = document.getElementById("examContent");
     container.innerHTML = "";
@@ -585,7 +561,6 @@
         const qNum = globalQ;
         const qId = `${section.id}_q${qi}`;
 
-        // Show reading passage before first comprehension question
         if (q.hasPassage) {
           const passage = document.createElement("div");
           passage.className = "reading-passage";
@@ -597,13 +572,10 @@
         div.className = "mcq-question";
         div.dataset.qid = qId;
 
-        // For questions that reference the passage, use shorter text
-        const displayText = q.hasPassage ? q.text.replace(/Texte :.*?\n\n/, "") : q.text;
-
         div.innerHTML = `
           <div class="mcq-question-header">Question ${qNum} sur ${TOTAL_QUESTIONS}</div>
           <div class="mcq-question-body">
-            <div class="mcq-question-text">${displayText.replace(/\n/g, "<br>")}</div>
+            <div class="mcq-question-text">${q.text.replace(/\n/g, "<br>")}</div>
             <div class="mcq-options">
               ${q.options.map((opt, oi) => `
                 <label class="mcq-option" data-qid="${qId}" data-oi="${oi}">
@@ -631,9 +603,6 @@
     });
   }
 
-  // ============================================================
-  //  TIMER
-  // ============================================================
   function startTimer() {
     clearInterval(timer);
     const timerEl = document.getElementById("timer");
@@ -651,23 +620,16 @@
     }, 1000);
   }
 
-  // ============================================================
-  //  ANTI-CHEAT
-  // ============================================================
-  function setOverlayActive(on) {
-    document.body.classList.toggle("overlay-active", on);
-  }
+  function setOverlayActive(on) { document.body.classList.toggle("overlay-active", on); }
 
   function askToExitExam(reason, source) {
     if (!examActive || examSubmitted || exitPromptOpen) return;
     if (Date.now() < antiCheatSuspendedUntil) return;
     violationCount++;
-
     const overlay = document.getElementById("exitOverlay");
-    const strike = document.getElementById("exitOverlayStrike");
-    const msg = document.getElementById("exitOverlayMessage");
-    const dig = document.getElementById("exitOverlayCountdownDigits");
-
+    const strike  = document.getElementById("exitOverlayStrike");
+    const msg     = document.getElementById("exitOverlayMessage");
+    const dig     = document.getElementById("exitOverlayCountdownDigits");
     if (violationCount >= MAX_VIOLATIONS) {
       logEvent("Limite atteinte", `${source} — violation #${violationCount} — soumission auto`);
       if (overlay) overlay.style.display = "none";
@@ -676,13 +638,11 @@
       submitExam("Anti-triche : 3 événements — soumission automatique.");
       return;
     }
-
     exitPromptOpen = true;
     if (strike) strike.textContent = `Avertissement ${violationCount} / ${MAX_VIOLATIONS - 1}`;
     if (msg) msg.textContent = (reason || "Vous avez quitté l'écran du concours.") + ` Au-delà de ${MAX_VIOLATIONS - 1} avertissements, le concours sera soumis automatiquement.`;
     if (overlay) overlay.style.display = "flex";
     setOverlayActive(true);
-
     exitSecondsRemaining = 15;
     if (dig) dig.textContent = exitSecondsRemaining;
     if (exitCountdownTimer) clearInterval(exitCountdownTimer);
@@ -710,36 +670,24 @@
     resetToLanding();
   }
 
-  // ============================================================
-  //  SUBMIT
-  // ============================================================
   function submitExam(autoReason) {
     if (examSubmitted) return;
     examSubmitted = true;
     clearInterval(timer);
-
     const btn = document.getElementById("submitBtn");
     if (btn) { btn.disabled = true; btn.textContent = "Envoi en cours…"; }
-
     logEvent("Concours soumis", autoReason || "Soumission manuelle");
-
     const studentName  = document.getElementById("studentNameField").value;
     const studentEmail = document.getElementById("studentEmailField").value;
     const group        = selectedGroup;
-
     let minutesUsed = EXAM_CONFIG.timeLimitMinutes;
     if (examDeadline) {
       const rem = examDeadline - Date.now();
       minutesUsed = EXAM_CONFIG.timeLimitMinutes - Math.max(0, Math.floor(rem / 60000));
     }
-
-    // Grade all sections
-    let totalScore = 0, totalMax = 0;
-    let reportSections = "";
-
+    let totalScore = 0, totalMax = 0, reportSections = "";
     SECTIONS.forEach(section => {
-      let sectionScore = 0;
-      let rows = "";
+      let sectionScore = 0, rows = "";
       section.questions.forEach((q, qi) => {
         const qId = `${section.id}_q${qi}`;
         const checked = document.querySelector(`input[name="${qId}"]:checked`);
@@ -756,7 +704,6 @@
           <td style="padding:6px 10px;border:1px solid #e2e8f0;font-size:12px;color:${ok?"#166534":"#991b1b"};font-weight:700;">${ok?"✅":"❌"}</td>
         </tr>`;
       });
-
       reportSections += `
         <h3 style="color:#1e293b;margin:20px 0 8px 0;font-size:15px;">${section.title} — ${sectionScore} / ${section.questions.length}</h3>
         <table style="border-collapse:collapse;width:100%;margin-bottom:16px;font-size:13px;">
@@ -769,8 +716,6 @@
           <tbody>${rows}</tbody>
         </table>`;
     });
-
-    // Session log
     let sessionLog = "";
     if (sessionEvents.length > 0) {
       const logRows = sessionEvents.map(e => `<tr>
@@ -778,8 +723,7 @@
         <td style="padding:5px 8px;border:1px solid #e2e8f0;font-size:11px;">${e.label}</td>
         <td style="padding:5px 8px;border:1px solid #e2e8f0;font-size:11px;">${e.detail}</td>
       </tr>`).join("");
-      sessionLog = `
-        <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;">
+      sessionLog = `<hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;">
         <h4 style="color:#0f172a;margin:0 0 8px 0;">Journal de session</h4>
         <table style="border-collapse:collapse;width:100%;font-size:11px;">
           <thead><tr style="background:#f1f5f9;">
@@ -792,40 +736,28 @@
     } else {
       sessionLog = `<hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;"><p style="font-size:12px;color:#64748b;">Aucun incident détecté.</p>`;
     }
-
     const scoreColor = totalScore >= totalMax * 0.7 ? "#166534" : totalScore >= totalMax * 0.5 ? "#854d0e" : "#991b1b";
-
     const htmlReport = `
       <h2 style="color:#0f172a;margin:0 0 4px 0;">Concours Parcoursup — Ascencia Business School</h2>
       <h3 style="font-weight:500;color:#475569;margin:0 0 16px 0;">${studentName}</h3>
-
       <table style="border-collapse:collapse;width:100%;max-width:460px;font-size:13px;margin-bottom:20px;background:#f8f9fc;">
         <tr><td style="padding:6px 12px;"><b>Session :</b></td><td style="padding:6px 12px;">${group}</td></tr>
         <tr><td style="padding:6px 12px;"><b>Email :</b></td><td style="padding:6px 12px;">${studentEmail}</td></tr>
         <tr><td style="padding:6px 12px;"><b>Temps utilisé :</b></td><td style="padding:6px 12px;">~${minutesUsed} min</td></tr>
       </table>
-
       <div style="background:#f0fdf4;border:2px solid #86efac;border-radius:10px;padding:16px 20px;margin-bottom:24px;max-width:300px;">
         <div style="font-size:0.8rem;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Score total</div>
         <div style="font-size:2.2rem;font-weight:800;color:${scoreColor};">${totalScore} / ${totalMax}</div>
         <div style="font-size:0.85rem;color:#64748b;">${Math.round((totalScore/totalMax)*100)}%</div>
       </div>
-
       <hr style="border:none;border-top:2px solid #e2e8f0;margin:0 0 16px 0;">
-      ${reportSections}
-      ${sessionLog}
+      ${reportSections}${sessionLog}
       <div style="margin-top:20px;font-size:11px;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:10px;">
         <em>Concours Parcoursup — Ascencia Business School · Généré automatiquement</em>
       </div>`;
-
-    const subject = EXAM_CONFIG.emailSubject
-      .replace("(SESSION)", group)
-      .replace("(NAME)", studentName);
-
+    const subject = EXAM_CONFIG.emailSubject.replace("(SESSION)", group).replace("(NAME)", studentName);
     if (window.emailjs) {
-      emailjs.send(
-        "service_opm4h6b",
-        "template_r0u784p",
+      emailjs.send("service_opm4h6b","template_r0u784p",
         { from_name: studentName, from_email: studentEmail, subject, message_html: htmlReport },
         "Bb0oPYBiZGQcyIz5r"
       ).then(() => {
@@ -846,9 +778,6 @@
     }
   }
 
-  // ============================================================
-  //  RESET
-  // ============================================================
   function resetToLanding() {
     clearInterval(timer);
     if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
@@ -856,100 +785,69 @@
     antiCheatSuspendedUntil = 0; violationCount = 0;
     sessionEvents.length = 0; selectedGroup = "";
     setOverlayActive(false);
-
     const timerEl = document.getElementById("timer");
     if (timerEl) { timerEl.textContent = ""; timerEl.style.display = "none"; }
-
-    document.getElementById("login").style.display   = "block";
+    document.getElementById("login").style.display    = "block";
     document.getElementById("confirm").style.display  = "none";
     document.getElementById("exam").style.display     = "none";
     document.getElementById("exitOverlay").style.display = "none";
-
     ["studentFirstName","studentLastName","studentEmail","classCode"].forEach(id => {
       const el = document.getElementById(id); if (el) el.value = "";
     });
     const gs = document.getElementById("groupSelect"); if (gs) gs.value = "";
   }
 
-  // ============================================================
-  //  DOM READY
-  // ============================================================
   document.addEventListener("DOMContentLoaded", () => {
     const ua = navigator.userAgent;
     isMobile = /Mobi|Android|iPad|iPhone|iPod/i.test(ua);
-
     document.addEventListener("contextmenu", e => e.preventDefault(), { capture: true });
-
     if (window.emailjs) {
       try { emailjs.init({ publicKey: "Bb0oPYBiZGQcyIz5r" }); } catch(e) { console.error(e); }
     }
-
-    // Translation sentinel
     const sentinel = document.getElementById("langSentinel");
     const baseline = sentinel ? sentinel.textContent.trim() : null;
     if (sentinel && baseline) {
       setInterval(() => {
         if (!examActive || examSubmitted) return;
-        if (sentinel.textContent.trim() !== baseline) {
-          askToExitExam("Traduction automatique détectée. Désactivez la traduction.", "translationWatch");
-        }
+        if (sentinel.textContent.trim() !== baseline) askToExitExam("Traduction automatique détectée. Désactivez la traduction.", "translationWatch");
       }, 2000);
     }
-
     resetToLanding();
-
-    document.getElementById("studentLastName").addEventListener("input", function() {
-      this.value = this.value.toUpperCase();
-    });
-
-    // LOGIN → CONFIRM
+    document.getElementById("studentLastName").addEventListener("input", function() { this.value = this.value.toUpperCase(); });
     document.getElementById("startBtn").addEventListener("click", () => {
       const firstName = document.getElementById("studentFirstName").value.trim();
       const lastName  = document.getElementById("studentLastName").value.trim().toUpperCase();
       const email     = document.getElementById("studentEmail").value.trim();
       const code      = document.getElementById("classCode").value.trim().toUpperCase();
       const group     = document.getElementById("groupSelect").value;
-
       if (!firstName || !lastName || !email) { alert("Merci de remplir toutes les informations."); return; }
       if (!group) { alert("Merci de sélectionner votre session."); return; }
-
       const expectedCode = EXAM_CONFIG.classCodes[group];
-      if (code !== expectedCode && code !== EXAM_CONFIG.debugCode) {
-        alert("Code d'accès invalide pour cette session.");
-        return;
-      }
-
+      if (code !== expectedCode && code !== EXAM_CONFIG.debugCode) { alert("Code d'accès invalide pour cette session."); return; }
       selectedGroup = group;
       document.getElementById("confirmName").textContent  = `${lastName} ${firstName}`;
       document.getElementById("confirmEmail").textContent = email;
       document.getElementById("confirmGroup").textContent = group;
-      document.getElementById("login").style.display   = "none";
+      document.getElementById("login").style.display    = "none";
       document.getElementById("confirm").style.display  = "block";
       scrollToTop();
     });
-
     document.getElementById("confirmBackBtn").addEventListener("click", () => {
       document.getElementById("confirm").style.display = "none";
       document.getElementById("login").style.display   = "block";
       scrollToTop();
     });
-
-    // CONFIRM → BEGIN
     document.getElementById("confirmBeginBtn").addEventListener("click", () => {
       const firstName = document.getElementById("studentFirstName").value.trim();
       const lastName  = document.getElementById("studentLastName").value.trim().toUpperCase();
       const email     = document.getElementById("studentEmail").value.trim();
       const fullName  = `${lastName} ${firstName}`;
-
       document.getElementById("studentNameField").value  = fullName;
       document.getElementById("studentEmailField").value = email;
       document.getElementById("groupNameField").value    = selectedGroup;
-
       document.getElementById("confirm").style.display = "none";
       document.getElementById("exam").style.display    = "block";
-
       examActive = true; examSubmitted = false; violationCount = 0;
-
       if (!examDeadline) {
         examDeadline = Date.now() + EXAM_CONFIG.timeLimitMinutes * 60 * 1000;
         localStorage.setItem(DEADLINE_KEY, String(examDeadline));
@@ -960,30 +858,17 @@
         document.getElementById("login").style.display = "block";
         return;
       }
-
       logEvent("Concours démarré", `Session: ${selectedGroup}, Candidat: ${fullName}`);
       isStartingExam = true;
       setTimeout(() => { isStartingExam = false; }, 1500);
-
       const timerEl = document.getElementById("timer");
       if (timerEl) timerEl.style.display = "inline-block";
-
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }
-
+      if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
       startTimer();
       buildExam();
       scrollToTop();
     });
-
-    // SUBMIT
-    document.getElementById("examForm").addEventListener("submit", e => {
-      e.preventDefault();
-      submitExam();
-    });
-
-    // EXIT OVERLAY BUTTONS
+    document.getElementById("examForm").addEventListener("submit", e => { e.preventDefault(); submitExam(); });
     document.getElementById("exitOverlayStay").addEventListener("click", () => {
       if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
       antiCheatSuspendedUntil = Date.now() + 2000;
@@ -991,11 +876,8 @@
       document.getElementById("exitOverlay").style.display = "none";
       setOverlayActive(false);
       logEvent("Candidat resté", `Après avertissement #${violationCount}`);
-      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
     });
-
     document.getElementById("exitOverlayLeave").addEventListener("click", () => {
       if (exitCountdownTimer) { clearInterval(exitCountdownTimer); exitCountdownTimer = null; }
       exitPromptOpen = false;
@@ -1003,40 +885,27 @@
       setOverlayActive(false);
       terminateExam("Vous avez quitté le concours. Il est arrêté et doit être recommencé.");
     });
-
-    // ANTI-CHEAT LISTENERS
     document.addEventListener("visibilitychange", () => {
       if (isStartingExam || !examActive || examSubmitted) return;
       if (Date.now() < antiCheatSuspendedUntil) return;
-      if (document.hidden) {
-        logEvent("Fenêtre masquée", "visibilitychange");
-        askToExitExam("Vous avez quitté l'écran du concours.", "visibilitychange");
-      }
+      if (document.hidden) { logEvent("Fenêtre masquée","visibilitychange"); askToExitExam("Vous avez quitté l'écran du concours.","visibilitychange"); }
     });
-
     window.addEventListener("blur", () => {
       if (isStartingExam || !examActive || examSubmitted) return;
       if (isMobile && Date.now() < safeBlurUntil) return;
       if (Date.now() < antiCheatSuspendedUntil) return;
-      logEvent("Focus perdu", "blur");
-      askToExitExam("Vous avez quitté la fenêtre du concours.", "blur");
+      logEvent("Focus perdu","blur"); askToExitExam("Vous avez quitté la fenêtre du concours.","blur");
     });
-
     document.addEventListener("fullscreenchange", () => {
       if (!examActive || examSubmitted || isStartingExam) return;
       if (Date.now() < antiCheatSuspendedUntil) return;
-      if (!document.fullscreenElement) {
-        logEvent("Plein écran quitté", "fullscreenchange");
-        askToExitExam("Vous avez quitté le mode plein écran.", "fullscreenchange");
-      }
+      if (!document.fullscreenElement) { logEvent("Plein écran quitté","fullscreenchange"); askToExitExam("Vous avez quitté le mode plein écran.","fullscreenchange"); }
     });
-
     document.addEventListener("keydown", e => {
       if ((e.key === "Escape" || e.key === "Esc") && examActive && !isStartingExam && !examSubmitted) {
         if (Date.now() < antiCheatSuspendedUntil) return;
         e.preventDefault();
-        logEvent("Échap pressé", "keydown");
-        askToExitExam("Vous avez appuyé sur Échap.", "keydown");
+        logEvent("Échap pressé","keydown"); askToExitExam("Vous avez appuyé sur Échap.","keydown");
       }
     });
   });
