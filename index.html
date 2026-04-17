@@ -721,6 +721,10 @@
     const studentName  = document.getElementById("studentNameField").value;
     const studentEmail = document.getElementById("studentEmailField").value;
     const group        = selectedGroup;
+
+    // ── Google Sheet: send results row ──────────────────────
+    // (full data fetch fires below after scoring is complete)
+    // ────────────────────────────────────────────────────────
     let minutesUsed = EXAM_CONFIG.timeLimitMinutes;
     if (examDeadline) {
       const rem = examDeadline - Date.now();
@@ -757,6 +761,42 @@
           <tbody>${rows}</tbody>
         </table>`;
     });
+    // ── Google Sheet + Drive report ─────────────────────────
+    const nameParts = studentName.trim().split(" ");
+    const sectionPayload = SECTIONS.map(section => {
+      let sectionScore = 0;
+      const questions = section.questions.map((q, qi) => {
+        const qId = section.id + "_q" + qi;
+        const checked = document.querySelector('input[name="' + qId + '"]:checked');
+        const studentOi = checked ? parseInt(checked.value, 10) : -1;
+        const ok = studentOi === q.correct;
+        if (ok) sectionScore++;
+        return {
+          text:          q.text.replace(/\n.*/,""),
+          studentAnswer: studentOi >= 0 ? q.options[studentOi] : "Sans réponse",
+          correctAnswer: q.options[q.correct],
+          correct:       ok
+        };
+      });
+      return { title: section.title, score: sectionScore, max: section.questions.length, questions };
+    });
+    fetch("https://script.google.com/macros/s/AKfycbxLmNA2_tnk4no8tR5oQo96zZXBaqpG1io4kY6S3FMePZUUem3wQ8o3UGFu6LNSp4ZA/exec", {
+      method: "POST",
+      mode: "no-cors",
+      redirect: "follow",
+      body: JSON.stringify({
+        lastName:  nameParts[0] || studentName,
+        firstName: nameParts.slice(1).join(" ") || "",
+        email:     studentEmail,
+        session:   group,
+        score:     totalScore + " / " + totalMax,
+        timestamp: new Date().toLocaleString("fr-FR"),
+        timeUsed:  minutesUsed + " min",
+        incidents: sessionEvents,
+        sections:  sectionPayload
+      })
+    }).catch(function() {});
+    // ────────────────────────────────────────────────────────
     let sessionLog = "";
     if (sessionEvents.length > 0) {
       const logRows = sessionEvents.map(e => `<tr>
